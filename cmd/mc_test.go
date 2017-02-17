@@ -66,25 +66,25 @@ func (s *TestSuite) TestInvalidPERMS(c *C) {
 	c.Assert(perms.isValidAccessPERM(), Equals, false)
 }
 
-func (s *TestSuite) TestGetMcConfigDir(c *C) {
-	dir, err := getMcConfigDir()
+func (s *TestSuite) TestGetMiniocConfigDir(c *C) {
+	dir, err := getMiniocConfigDir()
 	c.Assert(err, IsNil)
 	c.Assert(dir, Not(Equals), "")
-	c.Assert(mustGetMcConfigDir(), Equals, dir)
+	c.Assert(mustGetMiniocConfigDir(), Equals, dir)
 }
 
-func (s *TestSuite) TestGetMcConfigPath(c *C) {
-	dir, err := getMcConfigPath()
+func (s *TestSuite) TestGetMiniocConfigPath(c *C) {
+	dir, err := getMiniocConfigPath()
 	c.Assert(err, IsNil)
 	switch runtime.GOOS {
 	case "linux", "freebsd", "darwin", "solaris":
-		c.Assert(dir, Equals, filepath.Join(mustGetMcConfigDir(), "config.json"))
+		c.Assert(dir, Equals, filepath.Join(mustGetMiniocConfigDir(), "config.json"))
 	case "windows":
-		c.Assert(dir, Equals, filepath.Join(mustGetMcConfigDir(), "config.json"))
+		c.Assert(dir, Equals, filepath.Join(mustGetMiniocConfigDir(), "config.json"))
 	default:
 		c.Fail()
 	}
-	c.Assert(mustGetMcConfigPath(), Equals, dir)
+	c.Assert(mustGetMiniocConfigPath(), Equals, dir)
 }
 
 func (s *TestSuite) TestIsvalidAliasName(c *C) {
